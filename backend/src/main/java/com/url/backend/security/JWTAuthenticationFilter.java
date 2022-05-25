@@ -22,6 +22,8 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
     public static final int TOKEN_EXPIRATE = 600_000;
 
+    public static final String HEADER_ATRIBUTO = "Authorization";
+
     public static final String TOKEN_SENHA = "f5c9157b-b3b6-4f9d-86d5-cd5112ebfe11";
 
     private AuthenticationManager authenticationManager;
@@ -56,5 +58,8 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 
         response.getWriter().write(token);
         response.getWriter().flush();
+
+        response.setHeader("acess-control-expose-headers", HEADER_ATRIBUTO);
+        response.setHeader(HEADER_ATRIBUTO, "Bearer " + token);
     }
 }

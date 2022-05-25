@@ -28,7 +28,14 @@ public class JWTAuthorizantionFilter extends BasicAuthenticationFilter {
 
         String atributo = request.getHeader(HEADER_ATRIBUTO);
 
-        if (atributo == null){
+        if (atributo != null && atributo.startsWith(ATRIBUTO_PREFIXO)){
+            UsernamePasswordAuthenticationToken authToken = getAuthentication(atributo.substring(7));
+            if (authToken != null){
+                SecurityContextHolder.getContext().setAuthentication(authToken);
+            }
+        }
+
+        /*if (atributo == null){
             chain.doFilter(request, response);
             return;
         }
@@ -42,7 +49,8 @@ public class JWTAuthorizantionFilter extends BasicAuthenticationFilter {
 
         UsernamePasswordAuthenticationToken authenticationToken = getAuthentication(token);
 
-        SecurityContextHolder.getContext().setAuthentication(authenticationToken);
+        SecurityContextHolder.getContext().setAuthentication(authenticationToken);*/
+
         chain.doFilter(request, response);
 
     }
