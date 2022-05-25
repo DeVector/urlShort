@@ -22,13 +22,15 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 
 import { UrlListComponent } from './components/url/url-list/url-list.component';
 import { HomeComponent } from './components/home/home.component';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
     UrlListComponent,
-    HomeComponent
+    HomeComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
