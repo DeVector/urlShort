@@ -32,7 +32,9 @@ export class LoginComponent implements OnInit {
 
   logar() {
     this.service.authenticate(this.creds).subscribe( response => {
-      this.toast.info(response.body);
+    this.toast.success("Login with success", "Sucess");
+      this.service.successfulLogin(response.body);
+      this.router.navigate(['']);
     })
   }
 

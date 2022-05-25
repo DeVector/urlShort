@@ -25,10 +25,10 @@ export class AuthService {
   }
 
   isAuthenticated() {
-    let token = localStorage.getItem('token')
-    if(token != null){
-      return !this.jwtService.isTokenExpired(token)
-    }
-    return false;
+    return localStorage.getItem('token')!= null;
+  }
+
+  logout(){
+    localStorage.clear();
   }
 }

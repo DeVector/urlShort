@@ -59,7 +59,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         response.getWriter().write(token);
         response.getWriter().flush();
 
-        response.setHeader("acess-control-expose-headers", HEADER_ATRIBUTO);
-        response.setHeader(HEADER_ATRIBUTO, "Bearer " + token);
+        //response.setHeader("Acess-control-expose-headers", HEADER_ATRIBUTO);
+        //response.setHeader(HEADER_ATRIBUTO, "Bearer " + token);
     }
 }
