@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { UrlService } from 'src/app/services/url.service';
 import { Url } from '../../models/Url';
 
 @Component({
@@ -10,29 +11,31 @@ import { Url } from '../../models/Url';
 })
 export class UrlListComponent implements OnInit {
 
-  ELEMENT_DATA: Url[] = [
-    {
-      id: 1,
-      urlNormal: 'linkedin.com',
-      urlShort: 'bGlua2VkaW4uY29t',
-      dateCreate: '25/05/2022',
-      user: 1
-    }
-  ]
+  ELEMENT_DATA: Url[] = []
 
   displayedColumns: string[] = ['id', 'urlNormal', 'urlShort', 'dateCreate', 'user'];
   dataSource = new MatTableDataSource<Url>(this.ELEMENT_DATA);
 
-  constructor() { }
-
-  ngOnInit(): void {
-
-  }
-
+  
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  ngAfterViewInit(){
-    this.dataSource.paginator = this.paginator;
+  constructor(private service: UrlService) { }
+
+  ngOnInit(): void {
+    this.findAll();
+  }
+
+  findAll(){
+    this.service.findAll().subscribe(response => {
+      this.ELEMENT_DATA = response;
+      this.dataSource = new MatTableDataSource<Url>(this.ELEMENT_DATA);
+      this.dataSource.paginator = this.paginator;
+    })
+  }
+
+  applyFilter(event: Event){
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLocaleLowerCase();
   }
 
 }

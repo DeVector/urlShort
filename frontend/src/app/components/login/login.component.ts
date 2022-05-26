@@ -34,6 +34,7 @@ export class LoginComponent implements OnInit {
     this.service.authenticate(this.creds).subscribe( response => {
     this.toast.success("Login with success", "Sucess");
       this.service.successfulLogin(response.body);
+      console.log(response.body);
       this.router.navigate(['']);
     })
   }

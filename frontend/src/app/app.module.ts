@@ -29,6 +29,8 @@ import { ToastrModule } from 'ngx-toastr';
 
 import { HttpClientModule } from "@angular/common/http";
 import { AuthInterceptorProvider } from './interceptors/auth.interceptor';
+import { UrlCreateComponent } from './components/url/url-create/url-create.component';
+import { NgxMaskModule } from 'ngx-mask';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,8 @@ import { AuthInterceptorProvider } from './interceptors/auth.interceptor';
     UrlListComponent,
     HomeComponent,
     HeaderComponent,
-    LoginComponent
+    LoginComponent,
+    UrlCreateComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +66,9 @@ import { AuthInterceptorProvider } from './interceptors/auth.interceptor';
       closeButton: true,
       progressBar: true
     }),
-    HttpClientModule
+    HttpClientModule,
+
+    NgxMaskModule.forRoot()
   ],
   providers: [AuthInterceptorProvider],
   bootstrap: [AppComponent]

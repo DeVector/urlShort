@@ -21,7 +21,7 @@ export class AuthService {
   }
 
   successfulLogin(authToken: string) {
-    localStorage.setItem('token', authToken);
+    let token = localStorage.setItem('token', authToken);
   }
 
   isAuthenticated() {

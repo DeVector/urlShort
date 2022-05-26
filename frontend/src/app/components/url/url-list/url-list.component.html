@@ -3,6 +3,11 @@
     <h1>Lista de URLs</h1>
   
     <button routerLink="create" class="mat-elevation-z8" mat-stroked-button color="primary">Nova URL</button>
+
+    <mat-form-field appearance="standard">
+      <mat-label>Filter</mat-label>
+      <input matInput (keyup)="applyFilter($event)" placeholder="Filter search" #input>
+    </mat-form-field>
   
       <div class="mat-elevation-z8">
   

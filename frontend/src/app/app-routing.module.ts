@@ -3,6 +3,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { HomeComponent } from "./components/home/home.component";
 import { LoginComponent } from "./components/login/login.component";
 import { NavComponent } from "./components/nav/nav.component";
+import { UrlCreateComponent } from "./components/url/url-create/url-create.component";
 import { UrlListComponent } from "./components/url/url-list/url-list.component";
 
 
@@ -13,7 +14,8 @@ const routes: Routes = [
         component: NavComponent,
          children: [
             {path: 'home', component: HomeComponent},
-            {path: 'urls', component: UrlListComponent}
+            {path: 'urls', component: UrlListComponent},
+            {path: 'urls/create', component: UrlCreateComponent}
         ]
     }
 ];
