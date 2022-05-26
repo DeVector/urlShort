@@ -20,6 +20,8 @@ export class NavComponent implements OnInit {
 
   logout() {
     this.router.navigate(['/login']);
+    this.toast.info("Logout success", "Logout");
+    this.authService.logout();
   }
 
 }

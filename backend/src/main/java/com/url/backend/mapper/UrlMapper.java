@@ -19,7 +19,7 @@ public class UrlMapper {
         url.setUrlNormal(dto.getUrlNormal());
         url.setUrlShort(dto.getUrlShort());
         url.setDateCreate(dto.getDateCreate());
-        Usuario usuario = service.findById(dto.getId());
+        Usuario usuario = service.findById(dto.getUser());
         url.setUser(usuario);
         return url;
     }

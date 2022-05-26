@@ -1,16 +1,16 @@
 package com.url.backend.service;
 
+import com.google.common.hash.Hashing;
 import com.url.backend.entities.Url;
-import com.url.backend.entities.Usuario;
 import com.url.backend.entities.dto.UrlDTO;
 import com.url.backend.mapper.UrlMapper;
 import com.url.backend.repositories.UrlRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDate;
-import java.util.Base64;
 import java.util.List;
 import java.util.Optional;
 
@@ -26,7 +26,7 @@ public class UrlService {
     @Autowired
     private UrlMapper urlMapper;
 
-
+    @Transactional(readOnly = true)
     public List<Url> findAll(){
         return repository.findAll();
     }
@@ -39,9 +39,11 @@ public class UrlService {
         return url1.get();
     }
 
+    @Transactional
     public UrlDTO save(UrlDTO dto){
 
-        dto.setUrlShort(shortUrl(dto.getUrlNormal()));
+
+        dto.setUrlShort(generateUrl(dto.getUrlNormal()));
         dto.setDateCreate(LocalDate.now());
 
         Url url = urlMapper.toEntity(dto);
@@ -51,9 +53,22 @@ public class UrlService {
         return urlDTO;
     }
 
-   private String shortUrl(String urlNormal){
-        String encoder = Base64.getUrlEncoder().encodeToString(urlNormal.getBytes(StandardCharsets.UTF_8));
-        return encoder;
+
+   /*private String shortUrl(){
+        char[] randomString = new char[7];
+        Random generator = new Random();
+        for (int i = 0; i < 7; i++) {
+            randomString[i] = (char) generator.nextInt(122);
+        }
+
+        return String.valueOf(randomString);
+   }*/
+
+   private String generateUrl(String urlNormal){
+        String urlShort = Hashing.sha256()
+                .hashString(urlNormal, StandardCharsets.UTF_8)
+                .toString();
+        return urlShort.substring(0, 7);
    }
 
 

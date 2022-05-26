@@ -23,20 +23,13 @@ export class LoginComponent implements OnInit {
   
 
   constructor(
-    private toast: ToastrService,
-    private service: AuthService,
-    private router: Router) { }
+    private service: AuthService) { }
 
   ngOnInit(): void {
   }
 
   logar() {
-    this.service.authenticate(this.creds).subscribe( response => {
-    this.toast.success("Login with success", "Sucess");
-      this.service.successfulLogin(response.body);
-      console.log(response.body);
-      this.router.navigate(['']);
-    })
+    this.service.authenticate(this.creds);
   }
 
   validarCampos(): Boolean {

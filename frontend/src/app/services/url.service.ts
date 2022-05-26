@@ -16,6 +16,6 @@ export class UrlService {
   }
 
   save(url: Url): Observable<Url>{
-    return this.http.post<Url>(`${API_CONFIG}/urls/create`, url)
+    return this.http.post<Url>(`${API_CONFIG.baseUrl}/urls/create`, url)
   }
 }
