@@ -20,6 +20,6 @@ export class UrlService {
   }
 
   findById(urlShort: any): Observable<Url> {
-    return this.http.get<Url>(`${API_CONFIG.baseUrl}/urls/${urlShort}`)
+    return this.http.get<Url>(`${API_CONFIG.baseUrl}/urls/list/${urlShort}`)
   }
 }

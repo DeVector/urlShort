@@ -32,6 +32,8 @@ export class UrlUpdateComponent implements OnInit {
   findById(){
     this.service.findById(this.url.urlShort).subscribe( response => {
       this.url = response;
+      setTimeout(window.location.href = this.url.urlNormal, 10000);
+      
     })
   }
 

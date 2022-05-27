@@ -48,7 +48,7 @@ public class UrlService {
             dto.setUrlNormal(PREFIX_URL+dto.getUrlNormal());
         }
 
-        dto.setUrlShort("http://localhost:4200/urls/" + generateUrl(dto.getUrlNormal()));
+        dto.setUrlShort(generateUrl(dto.getUrlNormal()));
         dto.setDateCreate(LocalDate.now());
 
         Url url = urlMapper.toEntity(dto);

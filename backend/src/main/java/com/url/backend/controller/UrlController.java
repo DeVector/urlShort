@@ -26,7 +26,7 @@ public class UrlController {
         return ResponseEntity.ok(service.save(url));
     }
 
-    @GetMapping("/{urlShort}")
+    @GetMapping("/list/{urlShort}")
     public ResponseEntity<Url> findByUrl(@PathVariable String urlShort){
         return ResponseEntity.ok(service.findByUrl(urlShort));
     }
