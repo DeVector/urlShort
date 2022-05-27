@@ -13,7 +13,7 @@ export class UrlListComponent implements OnInit {
 
   ELEMENT_DATA: Url[] = []
 
-  displayedColumns: string[] = ['id', 'urlNormal', 'urlShort', 'dateCreate', 'user'];
+  displayedColumns: string[] = ['id', 'urlNormal', 'urlShort', 'dateCreate', 'user', 'acoes'];
   dataSource = new MatTableDataSource<Url>(this.ELEMENT_DATA);
 
   

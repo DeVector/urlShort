@@ -18,4 +18,8 @@ export class UrlService {
   save(url: Url): Observable<Url>{
     return this.http.post<Url>(`${API_CONFIG.baseUrl}/urls/create`, url)
   }
+
+  findById(urlShort: any): Observable<Url> {
+    return this.http.get<Url>(`${API_CONFIG.baseUrl}/urls/${urlShort}`)
+  }
 }

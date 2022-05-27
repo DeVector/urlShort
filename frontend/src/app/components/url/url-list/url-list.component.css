@@ -23,9 +23,6 @@ mat-form-field{
 }
 
 .edit{
-    color: rgb(0, -153, -255);
+    color: rgb(0, 153, 255);
 }
 
-.delete{
-    color: red;
-}

@@ -26,13 +26,15 @@ public class UrlService {
     @Autowired
     private UrlMapper urlMapper;
 
+    private static final String PREFIX_URL = "https://";
+
     @Transactional(readOnly = true)
     public List<Url> findAll(){
         return repository.findAll();
     }
 
     public Url findByUrl(String url){
-        Optional<Url> url1 = repository.findByUrlNormal(url);
+        Optional<Url> url1 = repository.findByUrlShort(url);
         if (url1.isEmpty()){
             throw new RuntimeException("Url " + url + " not found!!");
         }
@@ -42,8 +44,11 @@ public class UrlService {
     @Transactional
     public UrlDTO save(UrlDTO dto){
 
+        if (!dto.getUrlNormal().startsWith(PREFIX_URL)){
+            dto.setUrlNormal(PREFIX_URL+dto.getUrlNormal());
+        }
 
-        dto.setUrlShort(generateUrl(dto.getUrlNormal()));
+        dto.setUrlShort("http://localhost:4200/urls/" + generateUrl(dto.getUrlNormal()));
         dto.setDateCreate(LocalDate.now());
 
         Url url = urlMapper.toEntity(dto);

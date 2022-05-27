@@ -31,6 +31,7 @@ import { HttpClientModule } from "@angular/common/http";
 import { AuthInterceptorProvider } from './interceptors/auth.interceptor';
 import { UrlCreateComponent } from './components/url/url-create/url-create.component';
 import { NgxMaskModule } from 'ngx-mask';
+import { UrlUpdateComponent } from './components/url/url-update/url-update.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { NgxMaskModule } from 'ngx-mask';
     HomeComponent,
     HeaderComponent,
     LoginComponent,
-    UrlCreateComponent
+    UrlCreateComponent,
+    UrlUpdateComponent
   ],
   imports: [
     BrowserModule,
@@ -63,7 +65,6 @@ import { NgxMaskModule } from 'ngx-mask';
     ReactiveFormsModule,
     ToastrModule.forRoot({
       timeOut: 4000,
-      closeButton: true,
       progressBar: true
     }),
     HttpClientModule,
