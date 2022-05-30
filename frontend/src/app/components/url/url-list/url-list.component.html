@@ -42,12 +42,9 @@
             <ng-container matColumnDef="acoes">
               <th mat-header-cell *matHeaderCellDef> Ações </th>
               <td mat-cell *matCellDef="let element">
-                 <a target="_blank" rel="noopener" href={{element.urlNormal}}>
+                 <a target="_blank" rel="noopener" routerLink="{{element.urlShort}}">
                    <i class="material-icons edit">arrow_right_alt</i>
                  </a>
-                 <a routerLink="{{element.urlShort}}">
-                  <i class="material-icons edit">edit</i>
-                </a> 
                 </td>
             </ng-container>
         
